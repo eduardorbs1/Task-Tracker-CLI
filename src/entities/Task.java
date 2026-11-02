@@ -32,6 +32,10 @@ public class Task {
         return this.id;
     }
 
+    public Status getStatus() {
+        return this.status;
+    }
+
     @Override
     public String toString() {
         return String.format("%d %s status: %s createdAt: %s updatedAt: ",
