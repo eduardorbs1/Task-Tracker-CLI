@@ -36,6 +36,18 @@ public class Task {
         return this.status;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
+    public Instant getCreatedAt() {
+        return this.createdAt;
+    }
+
+    public Instant getUpdatedAt() {
+        return this.updatedAt;
+    }
+
     @Override
     public String toString() {
         return String.format("%d %s status: %s createdAt: %s updatedAt: ",
