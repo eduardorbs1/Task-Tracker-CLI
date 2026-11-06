@@ -28,6 +28,14 @@ public class Task {
         this.updatedAt = now;
     }
 
+    public Task(int id, String description, Status status,  Instant createdAt, Instant updatedAt) {
+        this.id = id;
+        this.createdAt = createdAt;
+        this.description = description;
+        this.status = status;
+        this.updatedAt = updatedAt;
+    }
+
     public int getId() {
         return this.id;
     }
@@ -50,7 +58,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return String.format("%d %s status: %s createdAt: %s updatedAt: ",
+        return String.format("%d %s %s createdAt: %s updatedAt: %s",
                 this.id, this.description, this.status, LocalDateTime.ofInstant(this.createdAt, ZoneId.systemDefault()),
                 LocalDateTime.ofInstant(this.updatedAt, ZoneId.systemDefault()));
     }
