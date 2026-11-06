@@ -5,6 +5,7 @@ import repositories.TaskRepository;
 import utils.Status;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +19,8 @@ public class TaskService {
         // Hydrated tasks
     }
 
-    public void addTask(Task task){
+    public void addTask(String description){
+        Task task = new Task(1, description);
         this.tasks.add(task);
     }
 
@@ -47,9 +49,13 @@ public class TaskService {
         task.markDone();
     }
 
-    public List<Task> list(Optional<Status> status){
+    public List<Task> list(){
+        return Collections.unmodifiableList(tasks);
+    }
 
-        return this.tasks.stream().filter(task -> status.isEmpty() || task.getStatus() == status.get()).toList();
+    public List<Task> listByStatus(Status status){
+
+        return this.tasks.stream().filter(task -> task.getStatus() == status).toList();
 
     }
 }
