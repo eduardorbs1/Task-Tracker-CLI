@@ -1,7 +1,10 @@
 package serializers;
 
 import entities.Task;
+import utils.Status;
 
+import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TaskSerializer {
@@ -57,12 +60,20 @@ public class TaskSerializer {
         stringBuilder.append("[\n");
         for(Task task : tasks) {
             stringBuilder.append(TaskSerializer.serialize(task));
-            if (tasks.indexOf(task) != tasks.size() - 1) {
+            if (tasks.getLast().getId() != task.getId()) {
                 stringBuilder.append(",\n");
             }
         }
 
         stringBuilder.append("\n]");
         return stringBuilder.toString();
+    }
+
+    public static Task deserialize(String serializedTask) {
+        return  null;
+    }
+
+    public static List<Task> deserializeAll(String serializedTasks) {
+        return  null;
     }
 }
