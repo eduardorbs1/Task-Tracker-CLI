@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TaskRepository {
@@ -23,13 +24,22 @@ public class TaskRepository {
             Files.writeString(PATH, serializedTasks);
 
         }catch (IOException e){
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
     public List<Task> findAll() {
-        return null;
-    }
 
+        if(!Files.exists(PATH)){
+            return new ArrayList<>();
+        }
+
+        try {
+            String serializedTasks = Files.readString(PATH);
+            return TaskSerializer.deserializeAll(serializedTasks);
+        }catch (IOException e){
+            throw new RuntimeException(e);
+        }
+    }
 
 }
