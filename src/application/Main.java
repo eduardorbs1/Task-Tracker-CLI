@@ -1,5 +1,6 @@
 package application;
 
+import presentation.ErrorPrinter;
 import repositories.TaskRepository;
 import services.TaskService;
 
@@ -8,6 +9,12 @@ public class Main {
         TaskRepository taskRepository = new TaskRepository();
         TaskService taskService = new TaskService(taskRepository);
         CommandDispatcher commandDispatcher = new CommandDispatcher(taskService);
-        commandDispatcher.dispatchCommand(args);
+
+        try{
+            commandDispatcher.dispatchCommand(args);
+        } catch (IllegalArgumentException e) {
+            ErrorPrinter.printError(e);
+        }
+
     }
 }
