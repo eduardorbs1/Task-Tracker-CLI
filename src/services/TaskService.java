@@ -4,19 +4,18 @@ import entities.Task;
 import repositories.TaskRepository;
 import utils.Status;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 public class TaskService {
 
-    private final List<Task> tasks = new ArrayList<>();
+    private final List<Task> tasks;
     private final TaskRepository taskRepository;
 
     public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
-        this.tasks.addAll(this.taskRepository.findAll());
+        this.tasks = this.taskRepository.findAll();
     }
 
     public void addTask(String description){
