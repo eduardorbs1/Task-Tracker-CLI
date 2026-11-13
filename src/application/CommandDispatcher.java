@@ -1,5 +1,6 @@
 package application;
 
+import presentation.TaskPrinter;
 import services.TaskService;
 import utils.Status;
 
@@ -60,9 +61,10 @@ public class CommandDispatcher {
             case "list" -> {
 
                 if(command.length == 1){
-                    this.taskService.list();
+                    TaskPrinter.printTasks(this.taskService.list());
                     return;
                 }
+
 
                 this.validateArgumentCount(command, 1);
 
@@ -70,15 +72,14 @@ public class CommandDispatcher {
 
                 try {
 
-                    status = Status.valueOf(command[1].toUpperCase());
+                   status = Status.valueOf(command[1].toUpperCase());
 
                 }catch (IllegalArgumentException e){
 
                     throw  new IllegalArgumentException("Invalid status: " + command[1], e);
                 }
 
-                taskService.listByStatus(status);
-
+                TaskPrinter.printTasks(this.taskService.listByStatus(status));
             }
 
             default -> throw new IllegalArgumentException("Unknown command: " + command[0]);
