@@ -5,6 +5,7 @@ import utils.Status;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 public class Task {
 
@@ -17,6 +18,9 @@ public class Task {
     private final Instant createdAt;
 
     private Instant updatedAt;
+
+    private final static DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+            .withZone(ZoneId.systemDefault());
 
     public Task(int id, String description) {
         this.id = id;
@@ -58,9 +62,11 @@ public class Task {
 
     @Override
     public String toString() {
+
+        String createdAt = FORMATTER.format(this.createdAt), updatedAt = FORMATTER.format(this.updatedAt);
+
         return String.format("%d %s %s createdAt: %s updatedAt: %s",
-                this.id, this.description, this.status, LocalDateTime.ofInstant(this.createdAt, ZoneId.systemDefault()),
-                LocalDateTime.ofInstant(this.updatedAt, ZoneId.systemDefault()));
+                this.id, this.description, this.status, createdAt, updatedAt);
     }
 
     public void update(String description) {
