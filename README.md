@@ -24,7 +24,7 @@ Task CLI allows you to create, update, delete, track, and list tasks directly fr
 ### 1. Clone the repository
 
 ```bash
-git clone git@github.com:eduardorbs1/Task-Tracker-CLI.git
+git clone [git@github.com:eduardorbs1/Task-Tracker-CLI.git]/[https://github.com/eduardorbs1/Task-Tracker-CLI.git]
 cd task-cli
 ```
 
