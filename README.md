@@ -1,5 +1,5 @@
 
-# Task CLI
+# Task Tracker CLI
 
 A simple command-line application for managing tasks, built with Java.
 
