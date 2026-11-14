@@ -12,17 +12,23 @@ import java.util.List;
 
 public class TaskRepository {
 
-    private static final Path PATH = Path.of("tasks.json");
+    private static final Path DIRECTORY = Path.of(System.getProperty("user.home"), ".task-tracker-cli");
+    private static final Path PATH = DIRECTORY.resolve("tasks.json");
 
     public TaskRepository() {
+        try {
+            Files.createDirectories(DIRECTORY);
+        } catch (IOException e) {
+            throw new RuntimeException("Could not create data directory", e);
+        }
     }
 
     public void saveAll(List<Task> tasks) {
+
+        String serializedTasks = TaskSerializer.serializeAll(tasks);
+
         try {
-
-            String serializedTasks = TaskSerializer.serializeAll(tasks);
             Files.writeString(PATH, serializedTasks);
-
         }catch (IOException e){
             throw new RuntimeException(e);
         }
